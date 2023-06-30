@@ -97,6 +97,19 @@ public:
         }
     }
     
+    stm::FrequencyModulator getModulator() {
+        return modulator;
+    }
+    
+    StereoDelayLine getStereoDelayLine() {
+        return delayLine;
+    }
+    
+    HighLowFilter getHighLowFilter() {
+        return highLowFilter;
+    }
+
+    
 private:
     AudioProcessorValueTreeState& state;
     //stm::BalancePanner panner;
@@ -106,16 +119,16 @@ private:
     HighLowFilter highLowFilter;
     
     void updateParameters(){
-        modulator.setDepth(*state.getRawParameterValue(Params::idModDepth));
-        modulator.setRate(*state.getRawParameterValue(Params::idModRate));
-        delayLine.setDelay(*state.getRawParameterValue(Params::idDelay));
-        delayLine.setTaps((int)*state.getRawParameterValue(Params::idTaps));
-        delayLine.setSpread(*state.getRawParameterValue(Params::idSpread));
-        delayLine.setOffset(*state.getRawParameterValue(Params::idOffsetLR));
-        delayLine.setFBdirect(*state.getRawParameterValue(Params::idFeedbackDirect));
-        delayLine.setFBcross(*state.getRawParameterValue(Params::idFeedbackCross));
-        highLowFilter.setLowPassFreq(*state.getRawParameterValue(Params::idLowPass));
-        highLowFilter.setHiPassFreq(*state.getRawParameterValue(Params::idHighPass));
+//        modulator.setDepth(*state.getRawParameterValue(Params::idModDepth));
+//        modulator.setRate(*state.getRawParameterValue(Params::idModRate));
+//        delayLine.setDelay(*state.getRawParameterValue(Params::idDelay));
+//        delayLine.setTaps((int)*state.getRawParameterValue(Params::idTaps));
+//        delayLine.setSpread(*state.getRawParameterValue(Params::idSpread));
+//        delayLine.setOffset(*state.getRawParameterValue(Params::idOffsetLR));
+//        delayLine.setFBdirect(*state.getRawParameterValue(Params::idFeedbackDirect));
+//        delayLine.setFBcross(*state.getRawParameterValue(Params::idFeedbackCross));
+//        highLowFilter.setLowPassFreq(*state.getRawParameterValue(Params::idLowPass));
+//        highLowFilter.setHiPassFreq(*state.getRawParameterValue(Params::idHighPass));
     }
 };
 

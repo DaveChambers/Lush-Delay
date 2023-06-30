@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="YrWzqh" name="Lush Delay" projectType="audioplug" cppLanguageStandard="17"
-              version="0.5.0" companyName="Sailing To Mars" pluginFormats="buildAU,buildVST3"
+              version="0.5.0" companyName="Sailing To Mars" pluginFormats="buildAU,buildAUv3,buildVST3"
               pluginChannelConfigs="{1, 2}, {2, 2}" displaySplashScreen="1"
               jucerFormatVersion="1">
   <MAINGROUP id="uynNn5" name="Lush Delay">

@@ -37,7 +37,13 @@ public:
         for (auto sampleIndex = 0 ; sampleIndex < processBlock.getNumSamples() ; sampleIndex++)
         {
             float inSampleL = processBlock.getSample(0, sampleIndex);
-            float inSampleR = processBlock.getSample(1, sampleIndex);
+            float inSampleR;
+            if (processBlock.getNumChannels() == 1) {
+                // For mono input
+                inSampleR = processBlock.getSample(0, sampleIndex);
+            }else{
+                inSampleR = processBlock.getSample(1, sampleIndex);
+            }
             
             float outSampleL = 0.0f;
             float outSampleR = 0.0f;
@@ -54,7 +60,7 @@ public:
             float feedforwardL = -inSampleL * fbDirect - inSampleR * fbCross;
             float feedforwardR = -inSampleR * fbDirect - inSampleL * fbCross;
             
-            float ap = *allpass;
+            float ap = 0.f; // *allpass; // Ran Spenser Saling's code and this is always zero
             
             outSampleL += feedforwardL * ap;
             outSampleR += feedforwardR * ap;
@@ -66,8 +72,14 @@ public:
             bufferR.push(inSampleR + feedbackR );
             
             processBlock.setSample(0, sampleIndex, outSampleL);
-            processBlock.setSample(1, sampleIndex, outSampleR);
             
+            if (processBlock.getNumChannels() == 1) {
+                // For mono input
+                processBlock.setSample(0, sampleIndex, outSampleR);
+            }else{
+                processBlock.setSample(1, sampleIndex, outSampleR);
+            }
+                        
             bufferL.increment();
             bufferR.increment();
         }

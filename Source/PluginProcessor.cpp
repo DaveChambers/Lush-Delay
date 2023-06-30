@@ -165,9 +165,24 @@ void LushDelayAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuff
     //Lush supports mono or stereo input
     jassert(totalNumInputChannels < 3);
     
+    lushDelayEngine.getDelayLine().getModulator().setDepth(0.189999998);
+    lushDelayEngine.getDelayLine().getModulator().setRate(0.638273001);
+    lushDelayEngine.getDelayLine().getStereoDelayLine().setDelay(639.908813);
+    lushDelayEngine.getDelayLine().getStereoDelayLine().setTaps((int)3);
+    lushDelayEngine.getDelayLine().getStereoDelayLine().setSpread(9.1953125);
+    lushDelayEngine.getDelayLine().getStereoDelayLine().setOffset(0.310000002);
+    lushDelayEngine.getDelayLine().getStereoDelayLine().setFBdirect(0.099999994);
+    lushDelayEngine.getDelayLine().getStereoDelayLine().setFBcross(0.409999996);
+    lushDelayEngine.getDelayLine().getHighLowFilter().setLowPassFreq(3889.80005);
+    lushDelayEngine.getDelayLine().getHighLowFilter().setHiPassFreq(22.7999992);
+    lushDelayEngine.getDryWetMix().setDryDecibels(-0.95);
+    lushDelayEngine.getDryWetMix().setWetDecibels(-4.1);
+    
+//    auto totalNumInputChannels  = getTotalNumInputChannels();
+    
     if (totalNumInputChannels == 1) {
         // For mono input, we copy channel 0 across both outputs
-        //buffer.copyFrom(1, 0, buffer.getReadPointer(0), buffer.getNumSamples());
+        buffer.copyFrom(1, 0, buffer.getReadPointer(0), buffer.getNumSamples());
     }
 
     lushDelayEngine.process(buffer);

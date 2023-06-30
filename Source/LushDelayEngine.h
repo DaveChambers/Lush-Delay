@@ -81,6 +81,15 @@ public:
         }
     }
     
+    LushDelayLine getDelayLine() {
+        return delayLine;
+    }
+    
+    stm::DryWetMix getDryWetMix() {
+        return dryWetMix;
+    }
+
+    
 private:
     AudioProcessorValueTreeState& state;
     stm::DryWetMix dryWetMix;
@@ -93,8 +102,8 @@ private:
     int currentTimeSigDenominator;
     
     void updateParameters(){
-        dryWetMix.setDryDecibels(*state.getRawParameterValue(Params::idDry));
-        dryWetMix.setWetDecibels(*state.getRawParameterValue(Params::idWet));
-        matchedBypass.setActive(*state.getRawParameterValue(Params::idBypass));
+//        dryWetMix.setDryDecibels(*state.getRawParameterValue(Params::idDry));
+//        dryWetMix.setWetDecibels(*state.getRawParameterValue(Params::idWet));
+//        matchedBypass.setActive(*state.getRawParameterValue(Params::idBypass));
     }
 };
